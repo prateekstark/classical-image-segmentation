@@ -53,11 +53,19 @@ def segment_image(image, raw_image, contrast_factors=[1.5, 0]):
 
 
 if __name__ == "__main__":
-    path = os.walk("img/")
+    parser = argparse.ArgumentParser(description="Script for segmentation of Gall Bladder Images")
+    parser.add_argument("--img_path", type=str, default="img/", help="Path for the image folder")
+    parser.add_argument("--det_path", type=str, default="det/", help="Path for the output masks folder")
+    args = parser.parse_args()
+    
+    if(not os.path.exists(args.det_path)):
+        os.mkdir(args.det_path)
+
+    path = os.walk(args.img_path)
     for _, _, files in path:
         for file in files:
             output_name = file.split(".")[0] + ".png"
-            image = load_image("img/" + file)
+            image = load_image(args.img_path + file)
             raw_image = image.copy()
 
             kernel = np.array([[-1, -1, -1], [-1, 9, -1], [-1, -1, -1]])
@@ -66,5 +74,5 @@ if __name__ == "__main__":
 
             mask = segment_image(image, raw_image)
             # plot_image(mask)
-            save_mask(mask, "det/", output_name)
+            save_mask(mask, args.det_path, output_name)
             print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")

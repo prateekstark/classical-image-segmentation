@@ -20,20 +20,20 @@ if __name__ == "__main__":
         description="Evaluation Script for segmentation of Gall Bladder Images"
     )
     parser.add_argument(
-        "-i", "--img_path", type=str, default="img", help="Path for the image folder"
+        "-i", "--img_path", type=str, default="img/", help="Path for the image folder"
     )
     parser.add_argument(
         "-d",
         "--det_path",
         type=str,
-        default="det",
+        default="det/",
         help="Path for the detected masks folder",
     )
     parser.add_argument(
         "-g",
         "--gt_path",
         type=str,
-        default="annotation",
+        default="annotation/",
         help="Path for the ground truth masks folder",
     )
 
