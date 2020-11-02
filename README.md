@@ -1,4 +1,4 @@
-# classical-image-segmentation
+# Classical Image Segmentation
 In this repository, we use classical computer vision techniques to segment real ultrasound
 images and extract Gall Bladder from the images.
 
